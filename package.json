@@ -1,6 +1,6 @@
 {
   "name": "@heymarco/container",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a class library for making a consistent html content page.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
