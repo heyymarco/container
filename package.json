@@ -1,0 +1,29 @@
+{
+  "name": "@heymarco/container",
+  "version": "1.0.0",
+  "description": "a class library for making a consistent html content page.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyymarco/container.git"
+  },
+  "keywords": [
+    "html",
+    "container",
+    "web",
+    "page"
+  ],
+  "author": "HeyMarco",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heyymarco/container/issues"
+  },
+  "homepage": "https://github.com/heyymarco/container#readme",
+  "dependencies": {
+    "@heymarco/media-breakpoint": "^1.0.0",
+    "@heymarco/scss-util": "^1.0.0"
+  },
+  "devDependencies": {}
+}
