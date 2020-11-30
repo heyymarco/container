@@ -1,0 +1,176 @@
+@use "../../../node_modules/@heymarco/scss-util/index" as *;
+@use "../../../node_modules/@heymarco/media-breakpoint/index" as *;
+
+
+
+/* begin: default css variables */
+:root {
+    --container-padding-x: #{rems(12/*px*/)};
+    @include media-tablet-up {
+        --container-padding-x: #{rems(36/*px*/)};
+    }
+    @include media-desktop-up {
+        --container-padding-x: #{rems(72/*px*/)};
+    }
+
+    --container-padding-y: var(--container-padding-x);
+}
+/* end: default css variables */
+
+
+
+@mixin article-items {
+    > {
+        header, h1, h2, h3, h4, h5, h6, .body, footer, aside {
+            @content;
+        }
+    }
+}
+
+
+
+@mixin container-x {
+    padding-left: var(--container-padding-x);
+    padding-right: var(--container-padding-x);
+}
+%container-x { @include container-x; }
+:not(article).container-x { @include container-x; }
+@mixin article-container-x {
+    @include article-items {
+        @include container-x;
+    }
+}
+article.container-x { @include article-container-x; }
+
+@mixin container-x-50 {
+    padding-left: calc(var(--container-padding-x) / 2);
+    padding-right: calc(var(--container-padding-x) / 2);
+}
+:not(article).container-x-50 { @include container-x-50; }
+@mixin article-container-x-50 {
+    @include article-items {
+        @include container-x-50;
+    }
+}
+article.container-x-50 { @include article-container-x-50; }
+
+@mixin container-x-0 {
+    padding-left: 0;
+    padding-right: 0;
+}
+:not(article).container-x-0 { @include container-x-0; }
+@mixin article-container-x-0 {
+    @include article-items {
+        @include container-x-0;
+    }
+}
+article.container-x-0 { @include article-container-x-0; }
+
+
+@mixin container-y {
+    padding-top: var(--container-padding-y);
+    padding-bottom: var(--container-padding-y);
+}
+:not(article).container-y { @include container-y; }
+@mixin article-container-y {
+    @include article-items {
+        @include container-y;
+    }
+}
+article.container-y { @include article-container-y; }
+
+@mixin container-y-50 {
+    padding-top: calc(var(--container-padding-y) / 2);
+    padding-bottom: calc(var(--container-padding-y) / 2);
+}
+:not(article).container-y-50 { @include container-y-50; }
+@mixin article-container-y-50 {
+    @include article-items {
+        @include container-y-50;
+    }
+}
+article.container-y-50 { @include article-container-y-50; }
+
+@mixin container-y-0 {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+:not(article).container-y-0 { @include container-y-0; }
+@mixin article-container-y-0 {
+    @include article-items {
+        @include container-y-0;
+    }
+}
+article.container-y-0 { @include article-container-y-0; }
+
+
+
+@mixin container {
+    @include container-x;
+    @include container-y;
+}
+:not(article).container {
+    @include container;
+}
+@mixin article-container {
+    @include article-container-x;
+    @include article-container-y;
+}
+article.container { @include article-container; }
+
+@mixin container-50 {
+    @include container-x-50;
+    @include container-y-50;
+}
+:not(article).container-50 {
+    @include container-50;
+}
+@mixin article-container-50 {
+    @include article-container-x-50;
+    @include article-container-y-50;
+}
+article.container-50 { @include article-container-50; }
+
+@mixin container-0 {
+    @include container-x-0;
+    @include container-y-0;
+}
+:not(article).container-0 {
+    @include container-0;
+}
+@mixin article-container-0 {
+    @include article-container-x-0;
+    @include article-container-y-0;
+}
+article.container-0 { @include article-container-0; }
+
+@mixin container-of($spacing-x: null, $spacing-y: null) {
+    @if ($spacing-x != null) {
+        padding-left: $spacing-x;
+        padding-right: $spacing-x;
+    }
+
+    @if ($spacing-y != null) {
+        padding-top: $spacing-y;
+        padding-bottom: $spacing-y;
+    }
+}
+@mixin article-container-of($spacing-x: null, $spacing-y: null) {
+    @include article-items {
+        @include container-of($spacing-x, $spacing-y);
+    }
+}
+
+
+@mixin not-container {
+    padding: 0 !important;
+}
+:not(article).not-container {
+    @include not-container;
+}
+@mixin article-not-container {
+    @include article-items {
+        @include not-container;
+    }
+}
+article.not-container { @include article-not-container; }
