@@ -3,17 +3,33 @@
 
 
 
+$container-padding-x-phone: rems(12/*px*/) !default;
+$container-padding-x-tablet: rems(36/*px*/) !default;
+$container-padding-x-desktop: rems(72/*px*/) !default;
+
+$container-padding-y-phone: rems(12/*px*/) !default;
+$container-padding-y-tablet: rems(36/*px*/) !default;
+$container-padding-y-desktop: rems(72/*px*/) !default;
+
+
+
 /* begin: default css variables */
 :root {
-    --container-padding-x: #{rems(12/*px*/)};
+    --container-padding-x: #{$container-padding-x-phone};
     @include media-tablet-up {
-        --container-padding-x: #{rems(36/*px*/)};
+        --container-padding-x: #{$container-padding-x-tablet};
     }
     @include media-desktop-up {
-        --container-padding-x: #{rems(72/*px*/)};
+        --container-padding-x: #{$container-padding-x-desktop};
     }
 
-    --container-padding-y: var(--container-padding-x);
+    --container-padding-y: #{$container-padding-y-phone};
+    @include media-tablet-up {
+        --container-padding-y: #{$container-padding-y-tablet};
+    }
+    @include media-desktop-up {
+        --container-padding-y: #{$container-padding-y-desktop};
+    }
 }
 /* end: default css variables */
 
