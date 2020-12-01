@@ -1,7 +1,7 @@
 {
   "name": "@heymarco/container",
-  "version": "1.0.3",
-  "description": "a class library for making a consistent html content page.",
+  "version": "1.0.4",
+  "description": "a class library for making a consistent html container page.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/heyymarco/container#readme",
   "dependencies": {
-    "@heymarco/media-breakpoint": "^1.0.0",
+    "@heymarco/media-breakpoints": "^1.0.2",
     "@heymarco/scss-util": "^1.0.0"
   },
   "devDependencies": {}
