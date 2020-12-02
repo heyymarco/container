@@ -3,7 +3,10 @@
 
 
 
-$container-breakpoints :
+$class                          : ".container"  !default;
+$var-prefix                     : "container"   !default;
+$var-root                       : ":root"       !default;
+$breakpoints :
     $breakpoint-port-phone      rems(12/*px*/) rems(12/*px*/),
     $breakpoint-tablet          rems(36/*px*/) rems(36/*px*/),
     $breakpoint-large-desktop   rems(72/*px*/) rems(72/*px*/),
@@ -12,15 +15,17 @@ $container-breakpoints :
 
 
 /* begin: default css variables */
-:root {
-    @each $breakpoint, $width, $height in $container-breakpoints {
+@mixin container-vars {
+    @each $breakpoint, $width, $height in $breakpoints {
         @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
-            --container-x: #{$width};
-            --container-y: #{$height};
+            --#{$var-prefix}-x: #{$width};
+            --#{$var-prefix}-y: #{$height};
         }
     }
 }
-/* end: default css variables */
+@if ($var-root) {
+    #{$var-root} { @include container-vars; }
+}
 
 
 
@@ -35,78 +40,77 @@ $container-breakpoints :
 
 
 @mixin container-x {
-    padding-left: var(--container-x);
-    padding-right: var(--container-x);
+    padding-left: var(--#{$var-prefix}-x);
+    padding-right: var(--#{$var-prefix}-x);
 }
-%container-x { @include container-x; }
-:not(article).container-x { @include container-x; }
+:not(article)#{$class}-x { @include container-x; }
 @mixin article-container-x {
     @include article-items {
         @include container-x;
     }
 }
-article.container-x { @include article-container-x; }
+article#{$class}-x { @include article-container-x; }
 
 @mixin container-x-50 {
-    padding-left: calc(var(--container-x) / 2);
-    padding-right: calc(var(--container-x) / 2);
+    padding-left: calc(var(--#{$var-prefix}-x) / 2);
+    padding-right: calc(var(--#{$var-prefix}-x) / 2);
 }
-:not(article).container-x-50 { @include container-x-50; }
+:not(article)#{$class}-x-50 { @include container-x-50; }
 @mixin article-container-x-50 {
     @include article-items {
         @include container-x-50;
     }
 }
-article.container-x-50 { @include article-container-x-50; }
+article#{$class}-x-50 { @include article-container-x-50; }
 
 @mixin container-x-0 {
     padding-left: 0;
     padding-right: 0;
 }
-:not(article).container-x-0 { @include container-x-0; }
+:not(article)#{$class}-x-0 { @include container-x-0; }
 @mixin article-container-x-0 {
     @include article-items {
         @include container-x-0;
     }
 }
-article.container-x-0 { @include article-container-x-0; }
+article#{$class}-x-0 { @include article-container-x-0; }
 
 
 @mixin container-y {
-    padding-top: var(--container-y);
-    padding-bottom: var(--container-y);
+    padding-top: var(--#{$var-prefix}-y);
+    padding-bottom: var(--#{$var-prefix}-y);
 }
-:not(article).container-y { @include container-y; }
+:not(article)#{$class}-y { @include container-y; }
 @mixin article-container-y {
     @include article-items {
         @include container-y;
     }
 }
-article.container-y { @include article-container-y; }
+article#{$class}-y { @include article-container-y; }
 
 @mixin container-y-50 {
-    padding-top: calc(var(--container-y) / 2);
-    padding-bottom: calc(var(--container-y) / 2);
+    padding-top: calc(var(--#{$var-prefix}-y) / 2);
+    padding-bottom: calc(var(--#{$var-prefix}-y) / 2);
 }
-:not(article).container-y-50 { @include container-y-50; }
+:not(article)#{$class}-y-50 { @include container-y-50; }
 @mixin article-container-y-50 {
     @include article-items {
         @include container-y-50;
     }
 }
-article.container-y-50 { @include article-container-y-50; }
+article#{$class}-y-50 { @include article-container-y-50; }
 
 @mixin container-y-0 {
     padding-top: 0;
     padding-bottom: 0;
 }
-:not(article).container-y-0 { @include container-y-0; }
+:not(article)#{$class}-y-0 { @include container-y-0; }
 @mixin article-container-y-0 {
     @include article-items {
         @include container-y-0;
     }
 }
-article.container-y-0 { @include article-container-y-0; }
+article#{$class}-y-0 { @include article-container-y-0; }
 
 
 
@@ -114,40 +118,40 @@ article.container-y-0 { @include article-container-y-0; }
     @include container-x;
     @include container-y;
 }
-:not(article).container {
+:not(article)#{$class} {
     @include container;
 }
 @mixin article-container {
     @include article-container-x;
     @include article-container-y;
 }
-article.container { @include article-container; }
+article#{$class} { @include article-container; }
 
 @mixin container-50 {
     @include container-x-50;
     @include container-y-50;
 }
-:not(article).container-50 {
+:not(article)#{$class}#{"-50"} {
     @include container-50;
 }
 @mixin article-container-50 {
     @include article-container-x-50;
     @include article-container-y-50;
 }
-article.container-50 { @include article-container-50; }
+article#{$class}-50 { @include article-container-50; }
 
 @mixin container-0 {
     @include container-x-0;
     @include container-y-0;
 }
-:not(article).container-0 {
+:not(article)#{$class}#{"-0"} {
     @include container-0;
 }
 @mixin article-container-0 {
     @include article-container-x-0;
     @include article-container-y-0;
 }
-article.container-0 { @include article-container-0; }
+article#{$class}-0 { @include article-container-0; }
 
 @mixin container-of($spacing-x: null, $spacing-y: null) {
     @if ($spacing-x != null) {
