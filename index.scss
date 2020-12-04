@@ -1,11 +1,17 @@
+// development:
+// @use "node_modules/@heymarco/scss-utils/index" as *;
+// @use "node_modules/@heymarco/media-breakpoints/index" as *;
+
+// production:
 @use "../../../node_modules/@heymarco/scss-utils/index" as *;
 @use "../../../node_modules/@heymarco/media-breakpoints/index" as *;
 
 
 
 $class                          : ".container"  !default;
-$var-prefix                     : "container"   !default;
 $var-root                       : ":root"       !default;
+$var-prefix                     : "container"   !default;
+
 $breakpoints :
     $breakpoint-port-phone      rems(12/*px*/) rems(12/*px*/),
     $breakpoint-tablet          rems(36/*px*/) rems(36/*px*/),
@@ -14,17 +20,22 @@ $breakpoints :
 
 
 
-/* begin: default css variables */
-@mixin container-vars {
+$_cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $_cssvar: "--";
+} @else {
+    $_cssvar: "--#{$var-prefix}-";
+}
+@mixin css-vars {
     @each $breakpoint, $width, $height in $breakpoints {
         @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
-            --#{$var-prefix}-x: #{$width};
-            --#{$var-prefix}-y: #{$height};
+            #{$_cssvar}x: #{$width};
+            #{$_cssvar}y: #{$height};
         }
     }
 }
 @if ($var-root) {
-    #{$var-root} { @include container-vars; }
+    #{$var-root} { @include css-vars; }
 }
 
 
@@ -40,8 +51,8 @@ $breakpoints :
 
 
 @mixin container-x {
-    padding-left: var(--#{$var-prefix}-x);
-    padding-right: var(--#{$var-prefix}-x);
+    padding-left: var(#{$_cssvar}x);
+    padding-right: var(#{$_cssvar}x);
 }
 :not(article)#{$class}-x { @include container-x; }
 @mixin article-container-x {
@@ -52,8 +63,8 @@ $breakpoints :
 article#{$class}-x { @include article-container-x; }
 
 @mixin container-x-50 {
-    padding-left: calc(var(--#{$var-prefix}-x) / 2);
-    padding-right: calc(var(--#{$var-prefix}-x) / 2);
+    padding-left: calc(var(#{$_cssvar}x) / 2);
+    padding-right: calc(var(#{$_cssvar}x) / 2);
 }
 :not(article)#{$class}-x-50 { @include container-x-50; }
 @mixin article-container-x-50 {
@@ -77,8 +88,8 @@ article#{$class}-x-0 { @include article-container-x-0; }
 
 
 @mixin container-y {
-    padding-top: var(--#{$var-prefix}-y);
-    padding-bottom: var(--#{$var-prefix}-y);
+    padding-top: var(#{$_cssvar}y);
+    padding-bottom: var(#{$_cssvar}y);
 }
 :not(article)#{$class}-y { @include container-y; }
 @mixin article-container-y {
@@ -89,8 +100,8 @@ article#{$class}-x-0 { @include article-container-x-0; }
 article#{$class}-y { @include article-container-y; }
 
 @mixin container-y-50 {
-    padding-top: calc(var(--#{$var-prefix}-y) / 2);
-    padding-bottom: calc(var(--#{$var-prefix}-y) / 2);
+    padding-top: calc(var(#{$_cssvar}y) / 2);
+    padding-bottom: calc(var(#{$_cssvar}y) / 2);
 }
 :not(article)#{$class}-y-50 { @include container-y-50; }
 @mixin article-container-y-50 {
