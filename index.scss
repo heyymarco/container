@@ -26,7 +26,7 @@ $breakpoints :
 
 
 
-@mixin css-vars {
+@mixin cssvar {
     @each $breakpoint, $width, $height in $breakpoints {
         @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
             #{$cssvar}x: #{$width};
@@ -35,12 +35,12 @@ $breakpoints :
     }
 }
 @if ($var-root) {
-    #{$var-root} { @include css-vars; }
+    #{$var-root} { @include cssvar; }
 }
 
 
 
-@mixin article-items {
+@mixin _article-items {
     > {
         header, h1, h2, h3, h4, h5, h6, .body, footer, aside {
             @content;
@@ -56,7 +56,7 @@ $breakpoints :
 }
 :not(article)#{$class}-x { @include container-x; }
 @mixin article-container-x {
-    @include article-items {
+    @include _article-items {
         @include container-x;
     }
 }
@@ -68,7 +68,7 @@ article#{$class}-x { @include article-container-x; }
 }
 :not(article)#{$class}-x-50 { @include container-x-50; }
 @mixin article-container-x-50 {
-    @include article-items {
+    @include _article-items {
         @include container-x-50;
     }
 }
@@ -80,7 +80,7 @@ article#{$class}-x-50 { @include article-container-x-50; }
 }
 :not(article)#{$class}-x-0 { @include container-x-0; }
 @mixin article-container-x-0 {
-    @include article-items {
+    @include _article-items {
         @include container-x-0;
     }
 }
@@ -93,7 +93,7 @@ article#{$class}-x-0 { @include article-container-x-0; }
 }
 :not(article)#{$class}-y { @include container-y; }
 @mixin article-container-y {
-    @include article-items {
+    @include _article-items {
         @include container-y;
     }
 }
@@ -105,7 +105,7 @@ article#{$class}-y { @include article-container-y; }
 }
 :not(article)#{$class}-y-50 { @include container-y-50; }
 @mixin article-container-y-50 {
-    @include article-items {
+    @include _article-items {
         @include container-y-50;
     }
 }
@@ -117,7 +117,7 @@ article#{$class}-y-50 { @include article-container-y-50; }
 }
 :not(article)#{$class}-y-0 { @include container-y-0; }
 @mixin article-container-y-0 {
-    @include article-items {
+    @include _article-items {
         @include container-y-0;
     }
 }
@@ -176,7 +176,7 @@ article#{$class}-0 { @include article-container-0; }
     }
 }
 @mixin article-container-of($spacing-x: null, $spacing-y: null) {
-    @include article-items {
+    @include _article-items {
         @include container-of($spacing-x, $spacing-y);
     }
 }
@@ -189,7 +189,7 @@ article#{$class}-0 { @include article-container-0; }
     @include not-container;
 }
 @mixin article-not-container {
-    @include article-items {
+    @include _article-items {
         @include not-container;
     }
 }
