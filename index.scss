@@ -11,6 +11,12 @@
 $class                          : ".container"  !default;
 $var-root                       : ":root"       !default;
 $var-prefix                     : "container"   !default;
+$cssvar: "";
+@if (($var-prefix == null) or ($var-prefix == "")) {
+    $cssvar: "--";
+} @else {
+    $cssvar: "--#{$var-prefix}-";
+}
 
 $breakpoints :
     $breakpoint-port-phone      rems(12/*px*/) rems(12/*px*/),
@@ -20,12 +26,6 @@ $breakpoints :
 
 
 
-$cssvar: "";
-@if (($var-prefix == null) or ($var-prefix == "")) {
-    $cssvar: "--";
-} @else {
-    $cssvar: "--#{$var-prefix}-";
-}
 @mixin css-vars {
     @each $breakpoint, $width, $height in $breakpoints {
         @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
