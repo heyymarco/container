@@ -20,17 +20,17 @@ $breakpoints :
 
 
 
-$_cssvar: "";
+$cssvar: "";
 @if (($var-prefix == null) or ($var-prefix == "")) {
-    $_cssvar: "--";
+    $cssvar: "--";
 } @else {
-    $_cssvar: "--#{$var-prefix}-";
+    $cssvar: "--#{$var-prefix}-";
 }
 @mixin css-vars {
     @each $breakpoint, $width, $height in $breakpoints {
         @include media-breakpoint-up($breakpoint, $grid-breakpoints) {
-            #{$_cssvar}x: #{$width};
-            #{$_cssvar}y: #{$height};
+            #{$cssvar}x: #{$width};
+            #{$cssvar}y: #{$height};
         }
     }
 }
@@ -51,8 +51,8 @@ $_cssvar: "";
 
 
 @mixin container-x {
-    padding-left: var(#{$_cssvar}x);
-    padding-right: var(#{$_cssvar}x);
+    padding-left: var(#{$cssvar}x);
+    padding-right: var(#{$cssvar}x);
 }
 :not(article)#{$class}-x { @include container-x; }
 @mixin article-container-x {
@@ -63,8 +63,8 @@ $_cssvar: "";
 article#{$class}-x { @include article-container-x; }
 
 @mixin container-x-50 {
-    padding-left: calc(var(#{$_cssvar}x) / 2);
-    padding-right: calc(var(#{$_cssvar}x) / 2);
+    padding-left: calc(var(#{$cssvar}x) / 2);
+    padding-right: calc(var(#{$cssvar}x) / 2);
 }
 :not(article)#{$class}-x-50 { @include container-x-50; }
 @mixin article-container-x-50 {
@@ -88,8 +88,8 @@ article#{$class}-x-0 { @include article-container-x-0; }
 
 
 @mixin container-y {
-    padding-top: var(#{$_cssvar}y);
-    padding-bottom: var(#{$_cssvar}y);
+    padding-top: var(#{$cssvar}y);
+    padding-bottom: var(#{$cssvar}y);
 }
 :not(article)#{$class}-y { @include container-y; }
 @mixin article-container-y {
@@ -100,8 +100,8 @@ article#{$class}-x-0 { @include article-container-x-0; }
 article#{$class}-y { @include article-container-y; }
 
 @mixin container-y-50 {
-    padding-top: calc(var(#{$_cssvar}y) / 2);
-    padding-bottom: calc(var(#{$_cssvar}y) / 2);
+    padding-top: calc(var(#{$cssvar}y) / 2);
+    padding-bottom: calc(var(#{$cssvar}y) / 2);
 }
 :not(article)#{$class}-y-50 { @include container-y-50; }
 @mixin article-container-y-50 {
